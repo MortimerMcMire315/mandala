@@ -23,7 +23,7 @@ screenInfo = ScreenInfo { screenLength = 512
                         }
 
 graph :: Graph
-graph = weightedSeq $
+graph = weightedSeq
              [ ((SectorInfo 16  True, blueBlack   ), 1)
              , ((SectorInfo 1  False, coffeeRing 6), 3)
              , ((SectorInfo 128 True, blueBlack   ), 1)
@@ -42,7 +42,7 @@ blueBlack =
                    ]
 
 coffeeRing :: Int -> FunctionSequence
-coffeeRing n = uniformSeq $ take n $ cycle $
+coffeeRing n = uniformSeq $ take n $ cycle
                    [ colorF $ hexColor 0x26 0x12 0x12
                    , colorF $ hexColor 0x54 0x35 0x32
                    , colorF $ hexColor 0xeb 0xcf 0xb9

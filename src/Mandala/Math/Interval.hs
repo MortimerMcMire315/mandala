@@ -4,12 +4,13 @@
 module Mandala.Math.Interval where
 
 import qualified Data.List as List
+import qualified Control.Monad as Monad
 import Mandala.Types
 
 -- Meant to be curried. Pass in a an interval list and get a function that takes
 -- a uv-radius and possibly returns the interval data with a relative uv-radius.
 searchInterval :: [Interval a] -> Search a
-searchInterval is r = searchFlattened (flattenIntervals is) r
+searchInterval is = searchFlattened (flattenIntervals is)
 
 
 data IntervalMetadata = IntervalMetadata { minVal  :: Double
@@ -28,7 +29,7 @@ searchFlattened is rad =
 
         matches = filter withinBounds is
         orderedMatches = List.sortBy preserveTop matches
-  
+
         relative (IntervalMetadata{..}, a) = ((rad - trueMin) / (trueMax - trueMin), a)
 
     in map relative orderedMatches
@@ -70,4 +71,4 @@ collapseScaledIntervals is =
     in go 0 0 is
 
 debugIntervals :: Graph -> [(IntervalMetadata, ())]
-debugIntervals = flattenIntervals . map (fmap (const ())) . map unwrapGraphNode . unwrapGraph
+debugIntervals = flattenIntervals . map (Monad.void . unwrapGraphNode) . unwrapGraph

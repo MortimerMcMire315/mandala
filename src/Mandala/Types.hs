@@ -1,11 +1,6 @@
-module Mandala.Types
-  ( module Mandala.Types.Annotations
-  , module Mandala.Types.Color
-  , module Mandala.Types.Graph
-  , module Mandala.Types.Math
-  ) where
+module Mandala.Types (module MT) where
 
-import Mandala.Types.Annotations
-import Mandala.Types.Color
-import Mandala.Types.Graph
-import Mandala.Types.Math
+import Mandala.Types.Annotations as MT
+import Mandala.Types.Color as MT
+import Mandala.Types.Graph as MT
+import Mandala.Types.Math as MT

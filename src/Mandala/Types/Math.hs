@@ -1,4 +1,3 @@
-{-# LANGUAGE BangPatterns #-}
 module Mandala.Types.Math where
 
 data V2 rep ann = V2 { _v2x :: !rep

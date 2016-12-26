@@ -24,30 +24,30 @@ screenInfo = ScreenInfo { screenLength = 512
                         }
 
 graph :: Graph
-graph = genSeq $ [ ((SectorInfo 1  True, whiteCircle), SequenceInfo 0.1 Under 0.2)
+graph = genSeq [ ((SectorInfo 1  True, whiteCircle), SequenceInfo 0.1 Under 0.2)
 
-                 , ((SectorInfo 7  True, quadratic c1 c2),   SequenceInfo 2 Over 0.9)
-                 , ((SectorInfo 28 True, downQ     c3 c4),   SequenceInfo 1 Over 0.6)
-                 , ((SectorInfo 14 True, downQ'    c5 c1),   SequenceInfo 1 Over 0.4)
+               , ((SectorInfo 7  True, quadratic c1 c2),   SequenceInfo 2 Over 0.9)
+               , ((SectorInfo 28 True, downQ     c3 c4),   SequenceInfo 1 Over 0.6)
+               , ((SectorInfo 14 True, downQ'    c5 c1),   SequenceInfo 1 Over 0.4)
 
-                 , ((SectorInfo 7  True, quadratic c2 c3),   SequenceInfo 2 Over 0.9)
-                 , ((SectorInfo 28 True, downQ     c4 c5),   SequenceInfo 1 Over 0.6)
-                 , ((SectorInfo 14 True, downQ'    c1 c2),   SequenceInfo 1 Over 0.4)
+               , ((SectorInfo 7  True, quadratic c2 c3),   SequenceInfo 2 Over 0.9)
+               , ((SectorInfo 28 True, downQ     c4 c5),   SequenceInfo 1 Over 0.6)
+               , ((SectorInfo 14 True, downQ'    c1 c2),   SequenceInfo 1 Over 0.4)
 
-                 , ((SectorInfo 7  True, quadratic c3 c4),   SequenceInfo 2 Over 0.9)
-                 , ((SectorInfo 28 True, downQ     c5 c1),   SequenceInfo 1 Over 0.6)
-                 , ((SectorInfo 14 True, downQ'    c2 c3),   SequenceInfo 1 Over 0.4)
+               , ((SectorInfo 7  True, quadratic c3 c4),   SequenceInfo 2 Over 0.9)
+               , ((SectorInfo 28 True, downQ     c5 c1),   SequenceInfo 1 Over 0.6)
+               , ((SectorInfo 14 True, downQ'    c2 c3),   SequenceInfo 1 Over 0.4)
 
-                 , ((SectorInfo 7  True, quadratic c4 c5),   SequenceInfo 2 Over 0.9)
-                 , ((SectorInfo 28 True, downQ     c1 c2),   SequenceInfo 1 Over 0.6)
-                 , ((SectorInfo 14 True, downQ'    c3 c4),   SequenceInfo 1 Over 0.4)
+               , ((SectorInfo 7  True, quadratic c4 c5),   SequenceInfo 2 Over 0.9)
+               , ((SectorInfo 28 True, downQ     c1 c2),   SequenceInfo 1 Over 0.6)
+               , ((SectorInfo 14 True, downQ'    c3 c4),   SequenceInfo 1 Over 0.4)
 
-                 , ((SectorInfo 7  True, quadratic c5 c1),   SequenceInfo 2 Over 0.9)
-                 , ((SectorInfo 28 True, downQ     c2 c3),   SequenceInfo 1 Over 0.6)
-                 , ((SectorInfo 14 True, downQ'    c4 c5),   SequenceInfo 1 Over 0.4)
+               , ((SectorInfo 7  True, quadratic c5 c1),   SequenceInfo 2 Over 0.9)
+               , ((SectorInfo 28 True, downQ     c2 c3),   SequenceInfo 1 Over 0.6)
+               , ((SectorInfo 14 True, downQ'    c4 c5),   SequenceInfo 1 Over 0.4)
 
-                 , ((SectorInfo 1 True, whiteCircle),  SequenceInfo 0.1 Over 0)
-                 ]
+               , ((SectorInfo 1 True, whiteCircle),  SequenceInfo 0.1 Over 0)
+               ]
 
 c1,c2,c3,c4,c5 :: Color
 c1 = hexColor 0xd6 0xf4 0xa6
@@ -60,15 +60,15 @@ whiteCircle :: FunctionSequence
 whiteCircle = singletonProcess $ colorF $ rgb 255 255 255
 
 quadratic :: Color -> Color -> FunctionSequence
-quadratic a b = fOfX a b 0.2 $
+quadratic a b = fOfX a b 0.2
                (\(V2 u v) -> v <= (u-0.5)**2)
 
 downQ :: Color -> Color -> FunctionSequence
-downQ a b = fOfX a b 0.3 $
+downQ a b = fOfX a b 0.3
               (\(V2 u v) -> v <= 0.7 - (u**2))
 
 downQ' :: Color -> Color -> FunctionSequence
-downQ' a b = fOfX a b 0.1 $
+downQ' a b = fOfX a b 0.1
                (\(V2 u v) -> v <= 0.7 - ((u-0.5)**2))
 
 type Function = V2 Double UV -> Bool

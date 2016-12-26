@@ -1,11 +1,6 @@
-module Mandala.Production
-  ( module Mandala.Production.Antialias
-  , module Mandala.Production.DrawGeneric
-  , module Mandala.Production.ParallelWrite
-  , module Mandala.Production.PNG
-  ) where
+module Mandala.Production (module MP) where
 
-import Mandala.Production.Antialias
-import Mandala.Production.DrawGeneric
-import Mandala.Production.ParallelWrite
-import Mandala.Production.PNG
+import Mandala.Production.Antialias as MP
+import Mandala.Production.DrawGeneric as MP
+import Mandala.Production.ParallelWrite as MP
+import Mandala.Production.PNG as MP

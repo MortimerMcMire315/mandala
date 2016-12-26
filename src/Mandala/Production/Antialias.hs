@@ -33,7 +33,7 @@ kernel gridF weightF drawF vPixel =
         total = sum $ zipWith scale3 colors weights
     in scale3 total (1.0 / sum weights)
 
-data RadialBlurOptions = RadialBlurOptions { stdDev :: Double
+newtype RadialBlurOptions = RadialBlurOptions { stdDev :: Double
                                            }
 
 radialBlur :: SquareGridOptions
@@ -48,5 +48,5 @@ radialBlur gridOpts (RadialBlurOptions std) drawF vp@(V2 px py) =
             in exp expo
 
         gridF = squareGrid gridOpts
-  
+
     in kernel gridF gauss drawF vp

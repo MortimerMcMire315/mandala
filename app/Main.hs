@@ -7,7 +7,7 @@ import qualified Exp2.Mandala as Exp
 
 import Options.Generic
 
-data Args = Args { outfile :: FilePath }
+newtype Args = Args { outfile :: FilePath }
             deriving (Generic)
 
 instance ParseRecord Args

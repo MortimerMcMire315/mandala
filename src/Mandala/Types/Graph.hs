@@ -45,7 +45,7 @@ data Interval a = Interval { intervalLength   :: Double
 newtype FunctionNode input = FNode { unwrapFNode :: Interval (Process input)
                                    } deriving (Show)
 
-data Input = Input { uvCoord :: V2 Double UV
+newtype Input = Input { uvCoord :: V2 Double UV
                    } deriving (Show)
 
 newtype FunctionSequence = FSeq { unwrapFSeq :: [FunctionNode Input]

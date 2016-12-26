@@ -13,7 +13,7 @@ import Mandala.Types
 
 
 reifyGraph :: ScreenInfo -> Graph -> V2 Double Pixel -> Color
-reifyGraph si@ScreenInfo{..} graph = \vPixel ->
+reifyGraph si@ScreenInfo{..} graph vPixel =
     let vPolar = pixelToPolar si vPixel
 
         colorFromPolarCoord :: V2 Double Polar -> Maybe Color
@@ -30,7 +30,7 @@ reifyScreenAgnostic graph (V2 theta r) =
         applySearchInternal :: FunctionSequence -> Search (Process Input)
         applySearchInternal = searchInterval . map unwrapFNode . unwrapFSeq
 
-        appliedInternalSearch = (fmap . fmap) (second applySearchInternal) $ sectorNodes
+        appliedInternalSearch = fmap (second applySearchInternal) <$> sectorNodes
 
         largeSearch :: Search (SectorInfo, Search (Process Input))
         largeSearch = searchInterval appliedInternalSearch
@@ -45,7 +45,7 @@ reifyScreenAgnostic graph (V2 theta r) =
 buildInput :: SectorInfo -> V2 Double Polar -> Input
 buildInput SectorInfo{..} (V2 t r) =
     let perSectorAngularWidth = 360.0 / fromIntegral numSectors
-        bucketIdx = truncate $ (t / perSectorAngularWidth) :: Int
+        bucketIdx = truncate $ t / perSectorAngularWidth :: Int
 
         reflected = reflection && mod bucketIdx 2 == 1
         theta|reflected = (fromIntegral bucketIdx + 1) - t / perSectorAngularWidth

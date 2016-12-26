@@ -1,11 +1,6 @@
-module Mandala
-    ( module Mandala.Combinators
-    , module Mandala.Math
-    , module Mandala.Production
-    , module Mandala.Types
-    ) where
+module Mandala (module M) where
 
-import Mandala.Combinators
-import Mandala.Math
-import Mandala.Production
-import Mandala.Types
+import Mandala.Combinators as M
+import Mandala.Math as M
+import Mandala.Production as M
+import Mandala.Types as M
